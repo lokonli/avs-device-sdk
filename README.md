@@ -1,3 +1,16 @@
+This is a clone of the avs-device-sdk
+
+Main changes:
+* Fixed issue when the sample app is started as a service.
+* Added notification sound when Alexa starts listening
+* Added push notification functionality
+
+Get started
+* Install, configure, build avs-device-sdk as normal.
+* Create a file  'start.mp3' in /home/pi/scripts/AlexaApp/sounds.
+This mp3 will be used as notification sound
+* create a pipe with the name /tmp/alexafifo. mkfifo /tmp/alexafifo
+
 ### IMPORTANT NOTE
 If you are updating from v1.3 or earlier to v1.6, you must update your `AlexaClientSDKConfig.json` to include a Notifications database. An updated sample is available in the quickstart guides for Ubuntu Linux, Raspberry Pi, macOS, and Generic Linux.
 
