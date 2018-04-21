@@ -1,5 +1,39 @@
 ## ChangeLog
 
+### v1.7.0 released 04/18/2018:
+
+**Enhancements**
+* `AuthDelegate` and `AuthServer.py` have been replaced by `CBLAUthDelegate`, which uses Code Based Linking for authorization.
+* Added new properties to `AlexaClientSDKConfig`:
+  * [`cblAuthDelegate`](https://github.com/alexa/avs-device-sdk/blob/master/Integration/AlexaClientSDKConfig.json#L2) - This object specifies parameters for `CBLAuthDelegate`.
+  * [`miscDatabase`](https://github.com/alexa/avs-device-sdk/blob/master/Integration/AlexaClientSDKConfig.json#L34) - A generic key/value database to be used by various components.
+  * [`dcfDelegate`](https://github.com/alexa/avs-device-sdk/blob/master/Integration/AlexaClientSDKConfig.json#L17) - This object specifies parameters for `DCFDelegate`. Within this object, values were added for `endpoint` and `overridenDcfPublishMessageBody`. `endpoint` is the endpoint for the Capabilities API. `overridenDcfPublishMessageBody`is the message that is sent to the Capabilities API. **Note**: Values in the `dcfDelegate` object will only work in `DEBUG` builds.  
+  * [`deviceInfo`](https://github.com/alexa/avs-device-sdk/blob/master/Integration/AlexaClientSDKConfig.json#L9) - Specifies device-identifying information for use by the Capabilities API and `CBLAuthDelegate`.  
+* Updated Directive Sequencer to support wildcard directive handlers. This allows a handler for a given AVS interface to register at the namespace level, rather than specifying the names of all directives within a given namespace.  
+* Updated the Raspberry Pi installation script to include `alsasink` in `AlexaClientSDKConfig`.  
+* Added `audioSink` as a configuration option. This allows users to override the audio sink element used in `Gstreamer`.
+* Added an interface for monitoring internet connection status: `InternetConnectionMonitorInterface.h`.  
+* The Alexa Communications Library (ACL) is no longer required to wait until authorization has succeeded before attempting to connect to AVS. Instead, `HTTP2Transport` handles waiting for authorization to complete.  
+* Device capabilities can now be sent for each capability interface using the Capabilities API.  
+* The sample app has been updated to send Capabilities API messages, which are automatically sent when the sample app starts. **Note**: A successful call to the Capabilities API must occur before a connection with AVS is established.  
+* The SDK now supports HTTP PUT messages.
+* Added support for opt-arg style arguments and multiple configuration files. Now, the sample app can be invoked by either of these commands: `SampleApp <configfile> <debuglevel>` OR `SampleApp -C file1 -C file2 ... -L loglevel`.
+
+**Bug Fixes**
+* Fixed Issues [447](https://github.com/alexa/avs-device-sdk/issues/447) and [553](https://github.com/alexa/avs-device-sdk/issues/553).  
+* Fixed the `AttachmentRenderSource`'s handling of `BLOCKING` `AttachmentReaders`.  
+* Updated the `Logger` implementation to be more resilient to `nullptr` string inputs.  
+* Fixed a `TimeUtils` utility-related compile issue.  
+* Fixed a bug in which alerts failed to activate if the system was restarted without network connection.  
+* Fixed Android 64-bit build failure issue.  
+
+**Known Issues**
+* The `ACL` may encounter issues if audio attachments are received but not consumed.
+* `SpeechSynthesizerState` currently uses `GAINING_FOCUS` and `LOSING_FOCUS` as a workaround for handling intermediate state. These states may be removed in a future release.
+* Some ERROR messages may be printed during start-up event if initialization proceeds normally and successfully.
+* If an unrecoverable authorization error is encountered the sample app may crash on shutdown.
+* If a non-CBL `clientId` is included in the `deviceInfo` section of `AlexaClientSDKConfig.json`, the error will be reported as an unrecoverable authorization error, rather than a more specific error.
+
 ### [1.6.0] - 2018-03-08
 
 **Enhancements**
