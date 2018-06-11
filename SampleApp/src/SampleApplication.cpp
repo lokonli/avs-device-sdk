@@ -701,8 +701,31 @@ bool SampleApplication::initialize(
         ACSDK_CRITICAL(LX("Failed to create UserInputManager!"));
         return false;
     }
+    //m_speakMediaPlayer->setVolume(25);	
+    //m_audioMediaPlayer>setVolume(25);	
+    //m_alertsMediaPlayer>setVolume(25);	
+   // m_notificationsMediaPlayer>setVolume(25);	
+    //m_ringtoneMediaPlayer>setVolume(25);	
+speakSpeaker->setVolume(10);
+//audioSpeaker>setVolume(25);
+//alertsSpeaker>setVolume(25);
+//notificationsSpeaker>setVolume(25);
+//ringtoneSpeaker>setVolume(25);
+/*
+std::shared_ptr<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface> speakSpeaker =
+        std::static_pointer_cast<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface>(m_speakMediaPlayer);
+    std::shared_ptr<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface> audioSpeaker =
+        std::static_pointer_cast<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface>(m_audioMediaPlayer);
+    std::shared_ptr<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface> alertsSpeaker =
+        std::static_pointer_cast<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface>(m_alertsMediaPlayer);
+    std::shared_ptr<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface> notificationsSpeaker =
+        std::static_pointer_cast<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface>(
+            m_notificationsMediaPlayer);
+    std::shared_ptr<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface> ringtoneSpeaker =
+        std::static_pointer_cast<alexaClientSDK::avsCommon::sdkInterfaces::SpeakerInterface>(m_ringtoneMediaPlayer);
+   */
 
-    return true;
+ return true;
 }
 
 }  // namespace sampleApp

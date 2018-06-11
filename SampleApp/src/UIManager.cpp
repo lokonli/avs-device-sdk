@@ -369,7 +369,7 @@ void UIManager::printState() {
                 ConsolePrinter::prettyPrint("Alexa is currently idle!");
                 return;
             case DialogUXState::LISTENING:
-		system("omxplayer /home/pi/scripts/AlexaApp/sounds/start.mp3");		
+		system("omxplayer --vol -1000 /home/pi/scripts/AlexaApp/sounds/start.mp3");		
                 ConsolePrinter::prettyPrint("Listening...");
                 return;
             case DialogUXState::THINKING:
